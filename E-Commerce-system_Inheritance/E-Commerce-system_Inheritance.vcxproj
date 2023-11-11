@@ -127,7 +127,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Book.cpp" />
+    <ClCompile Include="Closing.cpp" />
     <ClCompile Include="E-Commerce-system_Inheritance.cpp" />
+    <ClCompile Include="Electronics.cpp" />
+    <ClCompile Include="Product.cpp" />
+    <ClCompile Include="Products.cpp" />
+    <ClCompile Include="ProductsReader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Book.h" />
+    <ClInclude Include="Closing.h" />
+    <ClInclude Include="Electronics.h" />
+    <ClInclude Include="Product.h" />
+    <ClInclude Include="Products.h" />
+    <ClInclude Include="ProductsReader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

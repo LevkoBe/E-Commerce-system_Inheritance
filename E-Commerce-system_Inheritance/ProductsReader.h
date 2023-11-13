@@ -9,8 +9,9 @@ class ProductsReader
 {
 public:
 	ProductsReader() {};
-	std::vector<Product*> ReadFile(std::string filename, int startingIndex) {
-		std::vector<Product*> toBeReturned = std::vector<Product*>();
+
+	std::vector<Products*> ReadFile(std::string filename, int startingIndex) {
+		std::vector<Products*> toBeReturned = std::vector<Products*>();
 		std::string text = "";
 		std::ifstream inputFile(filename);
 		if (!inputFile) {
@@ -26,7 +27,7 @@ public:
 			{
 				continue;
 			}
-			Product* nextProducts = createProductsObject(line, startingIndex++);
+			Products* nextProducts = createProductsObject(line, startingIndex++);
 			if (nextProducts->getPrice() == 0.0)
 			{
 				std::cout << "There's an error in the file " << filename << ". It is recommended to fix the error.\n";
@@ -37,7 +38,7 @@ public:
 		return toBeReturned;
 	}
 
-	Products& createProductsObject(std::string& line, int index) {
+	Products* createProductsObject(std::string& line, int index) {
 		std::istringstream iss(line);
 		std::string argument;
 		std::vector<std::string> arguments;
@@ -49,7 +50,6 @@ public:
 			argument = (start != std::string::npos && end != std::string::npos) ? argument.substr(start, end - start + 1) : "";
 			arguments.push_back(argument);
 		}
-		Products products(arguments, index);
-		return Products()
+		return new Products(arguments, index);
 	}
 };

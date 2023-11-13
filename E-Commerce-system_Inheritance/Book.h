@@ -7,6 +7,7 @@ class Book final : public Product {
     std::string author;
     int width;
     std::string* pages;
+    std::string ID;
     int bookmark = 0;
     void generatePages() {
         pages = new std::string[width];
@@ -16,8 +17,8 @@ class Book final : public Product {
         }
     }
 public:
-    Book(int productID, std::string& name, double price, std::string author, int width) :
-        Product(productID, name, price), author(author), width(width) {
+    Book(int productID, std::string& name, double price, std::string author, int width, std::string ID) :
+        Product(productID, name, price), author(author), width(width), ID(ID) {
         generatePages();
     }
     void display() const override {

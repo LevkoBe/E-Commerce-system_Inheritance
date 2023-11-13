@@ -6,6 +6,34 @@
 #include "Closing.h"
 #include <string>
 #include <vector>
+#include <map>
+#include "ProductType.h"
+
+const std::map<std::string, int> clothesSizeDictionary {
+	{"Small",  1},
+	{"Medium", 2},
+	{"Large",  3},
+};
+
+const std::map<std::string, char> materialToSymbol = {
+	{"Silk",   '"'},
+	{"Denim",  '-'},
+	{"Cotton", '*'},
+	{"Wool",   '+'},
+	{"Leather",'#'},
+	{"Linen",  '&'},
+	{"Velvet", '%'},
+};
+
+const std::map<std::string, std::string> colorToHex {
+	{"Black",   "#000000"},
+	{"White",   "#FFFFFF"},
+	{"Red",     "#FF0000"},
+	{"Green",   "#00FF00"},
+	{"Blue",    "#0000FF"},
+	{"Yellow",  "#FFFF00"},
+	{"Purple",  "#800080"},
+};
 
 class IProducts {
 protected:
@@ -13,55 +41,103 @@ protected:
     std::string name;
     double price;
 public:
-    virtual Product* getProduct() const = 0;
+    virtual Product* getProduct() = 0;
+    virtual double getPrice() const = 0;
 };
 
 class Products : public IProducts {
 protected:
 	int startingIndex;
-	std::string productType; // enum 
+	int newIndex = 0;
+	ProductType productType; // enum 
 	std::string productName;
 	double price;
 	int quantity;
-	std::vector<std::string> additionalAttributes;
+	std::map<std::string, std::string> additionalAttributesDictionary;
 
 public:
 
-	Products(int startingIndex, const std::string& productType, const std::string& productName, double price, int quantity, const std::vector<std::string>& additionalAttributes)
-		: startingIndex(startingIndex), productType(productType), productName(productName), price(price), quantity(quantity), additionalAttributes(additionalAttributes) {}
+	Products(std::vector<std::string> arguments, int startingIndex): startingIndex(startingIndex) { getAdditionalAttributes(arguments); }
 
-    Product* getProduct() const override {
+	double getPrice() const override {
+		return price;
+	}
 
-		switch (arguments[0][0])
+	int getID() {
+		return startingIndex * 1000 + newIndex++;
+	}
+    
+	Product* getProduct() override {
+		int size = additionalAttributesDictionary.count("screenSize") > 0 ? std::stoi(additionalAttributesDictionary["screenSize"]) : 20;
+		int capacity = additionalAttributesDictionary.count("energyCapacity") > 0 ? std::stoi(additionalAttributesDictionary["energyCapacity"]) : 20000;
+		switch (productType)
 		{
-		case 'E': // Electronics
-			return createElectronicsObject(index, arguments);
-		case 'B': // Book
-			return new Book(index, arguments[1], std::stod(arguments[2]), arguments[3], std::stoi(arguments[4]));
-		case 'C': // Closing
-			return new Closing(index, arguments[1], std::stod(arguments[2]), std::stoi(arguments[3]), arguments[4], arguments[5][0]);
+		case ElectronicsType:
+			return new Electronics(getID(), productName, price, additionalAttributesDictionary["brand"], additionalAttributesDictionary["model"], size, capacity);
+			break;
+		case BookType:
+			return new Book(getID(), productName, price, additionalAttributesDictionary["author"], std::stoi(additionalAttributesDictionary["width"]), additionalAttributesDictionary["id"]);
+			break;
+		case ClosingType:
+			// int productID, std::string& name, double price, int size, std::string color, char material
+			return new Closing(getID(), productName, price, clothesSizeDictionary.find(additionalAttributesDictionary["size"])->second,
+				colorToHex.find(additionalAttributesDictionary["color"])->second, materialToSymbol.find(additionalAttributesDictionary["material"])->second);
+			break;
 		default:
-			return new Product(0, arguments[0], 0.0);
+			break;
 		}
+
     };
+
+	void display() const {
+		std::cout << "Product: " << productName << std::endl;
+	}
+
 private:
-	Product* createElectronicsObject(int index, std::vector<std::string> arguments) {
+	
+	void getAdditionalAttributes(std::vector<std::string> arguments) {
+		int count = arguments.size();
+
+		productType = stringToProductType(arguments[0]);
+		productName = arguments[1];
+		price = std::stod(arguments[2]);
+		quantity = std::stoi(arguments[3]);
+
+		switch (productType)
+		{
 		// [Electronics, Laptop, 799.99, 10, Dell, Inspiron 15, 45000mAh]
 		// [Electronics, Smartphone, 499.99, 15, Apple, iPhone 12, 5.0 inches]
-		int count = arguments.size();
-		std::string mAhOrScreen = arguments[count - 1];
-		int length = mAhOrScreen.size();
-		if (count >= 7)
-		{
-			int mAh = std::stoi(arguments[5].substr(0, mAhOrScreen.length() - 3));
-			int screenSize = std::stoi(arguments[6].substr(0, mAhOrScreen.length() - 7));
-			return new Electronics(index, arguments[1], std::stod(arguments[2]), arguments[3], arguments[4], mAh, screenSize);
+		// Electronics -> brand (---), model (---), screenSize (#) inches, energyCapacity (#) mAh
+		case ElectronicsType:
+			additionalAttributesDictionary["brand"] = arguments[4];
+			additionalAttributesDictionary["model"] = arguments[5];
+			if (arguments.size() >= 8)
+			{
+				additionalAttributesDictionary["mAh"] = arguments[6].substr(0, arguments[6].length() - 3);
+				additionalAttributesDictionary["screenSize"] = arguments[7].substr(0, arguments[7].length() - 7);
+				break;
+			}
+			additionalAttributesDictionary[(arguments[6].back() == 'h') ? "mAh" : "screenSize"] =
+				arguments[6].substr(0, arguments.size() - ((arguments[6].back() == 'h') ? 3 : 7));
+			break;
+		// [Books, The Catcher in the Rye, 14.99, 18, J.D. Salinger, Fiction, 978-0-316-76948-0]
+		// Book -> author; (---) style; (---) id; (---) width; (#)
+		case BookType:
+			additionalAttributesDictionary["author"] = arguments[4];
+			additionalAttributesDictionary["style"] = arguments[5];
+			additionalAttributesDictionary["id"] = arguments[6];
+			additionalAttributesDictionary["width"] = std::string(1, arguments[6][0]);
+			break;
+		// [Clothing, T-Shirt, 19.99, 50, Medium, Blue, Cotton]
+		// Closing: size; (#) color; (#abcdef) material; (*)
+		case ClosingType:
+			additionalAttributesDictionary["size"] = arguments[4];
+			additionalAttributesDictionary["color"] = arguments[5];
+			additionalAttributesDictionary["material"] = arguments[6];
+			break;
+		default:
+			break;
 		}
-		if (mAhOrScreen[length - 1] == 'h') { // mAh
-			int mAh = std::stoi(mAhOrScreen.substr(0, mAhOrScreen.length() - 3));
-			return new Electronics(index, arguments[1], std::stod(arguments[2]), arguments[3], arguments[4], 20, mAh);
-		} // inches
-		int screenSize = std::stoi(mAhOrScreen.substr(0, mAhOrScreen.length() - 7));
-		return new Electronics(index, arguments[1], std::stod(arguments[2]), arguments[3], arguments[4], screenSize, 20000);
 	}
+
 };

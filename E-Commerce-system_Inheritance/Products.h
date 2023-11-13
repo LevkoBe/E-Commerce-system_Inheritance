@@ -3,7 +3,7 @@
 #include "Product.h"
 #include "Electronics.h"
 #include "Book.h"
-#include "Closing.h"
+#include "Clothing.h"
 #include <string>
 #include <vector>
 #include <map>
@@ -87,9 +87,9 @@ public:
 		case BookType:
 			return new Book(getID(), productName, price, additionalAttributesDictionary["author"], std::stoi(additionalAttributesDictionary["width"]), additionalAttributesDictionary["id"]);
 			break;
-		case ClosingType:
+		case ClothingType:
 			// int productID, std::string& name, double price, int size, std::string color, char material
-			return new Closing(getID(), productName, price, clothesSizeDictionary.find(additionalAttributesDictionary["size"])->second,
+			return new Clothing(getID(), productName, price, clothesSizeDictionary.find(additionalAttributesDictionary["size"])->second,
 				colorToHex.find(additionalAttributesDictionary["color"])->second, materialToSymbol.find(additionalAttributesDictionary["material"])->second);
 			break;
 		default:
@@ -99,7 +99,7 @@ public:
     };
 
 	void display() const {
-		std::cout << "Product: " << productName << std::endl;
+		std::cout << "Product: " << productName << " (" << quantity << "x)" << std::endl;
 	}
 
 private:
@@ -138,8 +138,8 @@ private:
 			additionalAttributesDictionary["width"] = std::string(1, arguments[6][0]);
 			break;
 		// [Clothing, T-Shirt, 19.99, 50, Medium, Blue, Cotton]
-		// Closing: size; (#) color; (#abcdef) material; (*)
-		case ClosingType:
+		// Clothing: size; (#) color; (#abcdef) material; (*)
+		case ClothingType:
 			additionalAttributesDictionary["size"] = arguments[4];
 			additionalAttributesDictionary["color"] = arguments[5];
 			additionalAttributesDictionary["material"] = arguments[6];

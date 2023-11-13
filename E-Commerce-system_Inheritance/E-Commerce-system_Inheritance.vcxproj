@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Book.cpp" />
-    <ClCompile Include="Closing.cpp" />
+    <ClCompile Include="Clothing.cpp" />
     <ClCompile Include="E-Commerce-system_Inheritance.cpp" />
     <ClCompile Include="Electronics.cpp" />
     <ClCompile Include="Product.cpp" />
@@ -137,7 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h" />
-    <ClInclude Include="Closing.h" />
+    <ClInclude Include="Clothing.h" />
     <ClInclude Include="Electronics.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="Products.h" />

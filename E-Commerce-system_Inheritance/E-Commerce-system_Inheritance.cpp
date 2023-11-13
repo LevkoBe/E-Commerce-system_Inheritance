@@ -1,10 +1,7 @@
 
 #include <iostream>
 #include <vector>
-#include "Product.h"
-#include "Electronics.h"
-#include "Book.h"
-#include "Closing.h"
+#include "Products.h"
 #include "ProductsReader.h"
 
 
@@ -16,5 +13,9 @@ int main()
 
     for (const auto& products : productss) {
         products->display();
+        while (products->available())
+        {
+            products->getProduct()->display();
+        }
     }
 }

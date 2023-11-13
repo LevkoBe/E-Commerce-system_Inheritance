@@ -66,8 +66,17 @@ public:
 	int getID() {
 		return startingIndex * 1000 + newIndex++;
 	}
+
+	bool available() {
+		if (quantity == 0) {
+			std::cout << "Sorry, no more products of this kind.\n\n";
+			return false;
+		}
+		return true;
+	}
     
 	Product* getProduct() override {
+		quantity--;
 		int size = additionalAttributesDictionary.count("screenSize") > 0 ? std::stoi(additionalAttributesDictionary["screenSize"]) : 20;
 		int capacity = additionalAttributesDictionary.count("energyCapacity") > 0 ? std::stoi(additionalAttributesDictionary["energyCapacity"]) : 20000;
 		switch (productType)
@@ -118,7 +127,7 @@ private:
 				break;
 			}
 			additionalAttributesDictionary[(arguments[6].back() == 'h') ? "mAh" : "screenSize"] =
-				arguments[6].substr(0, arguments.size() - ((arguments[6].back() == 'h') ? 3 : 7));
+				arguments[6].substr(0, arguments[6].size() - ((arguments[6].back() == 'h') ? 3 : 7));
 			break;
 		// [Books, The Catcher in the Rye, 14.99, 18, J.D. Salinger, Fiction, 978-0-316-76948-0]
 		// Book -> author; (---) style; (---) id; (---) width; (#)

@@ -129,8 +129,10 @@
   <ItemGroup>
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="Clothing.cpp" />
+    <ClCompile Include="Customer.cpp" />
     <ClCompile Include="E-Commerce-system_Inheritance.cpp" />
     <ClCompile Include="Electronics.cpp" />
+    <ClCompile Include="Order.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Products.cpp" />
     <ClCompile Include="ProductsReader.cpp" />
@@ -138,7 +140,9 @@
   <ItemGroup>
     <ClInclude Include="Book.h" />
     <ClInclude Include="Clothing.h" />
+    <ClInclude Include="Customer.h" />
     <ClInclude Include="Electronics.h" />
+    <ClInclude Include="Order.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="Products.h" />
     <ClInclude Include="ProductsReader.h" />

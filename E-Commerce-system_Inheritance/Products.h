@@ -99,7 +99,7 @@ public:
     };
 
 	void display() const {
-		std::cout << "Product: " << productName << " (" << quantity << "x)" << std::endl;
+		std::cout << "Products: " << productName << " (" << quantity << "x)" << std::endl;
 	}
 
 private:

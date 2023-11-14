@@ -3,6 +3,7 @@
 #include <vector>
 #include "Products.h"
 #include "ProductsReader.h"
+#include "Customer.h"
 
 
 
@@ -18,4 +19,7 @@ int main()
             products->getProduct()->display();
         }
     }
+    Customer john("John", 10000);
+    john.balance();
+    john.products();
 }

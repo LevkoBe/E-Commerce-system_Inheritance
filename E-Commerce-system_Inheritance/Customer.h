@@ -50,7 +50,21 @@ public:
 		std::cout << "You have $" << money << ". Enjoy it!\n";
 	}
 
-	void sell(Product* product) {
+	Product* productByID(int ID) {
+		for (const auto& product : bought_products)
+		{
+			if (product->getId() == ID)
+			{
+				return product;
+			}
+		}
+		std::cout << "This cout should not be reachable.";
+		throw std::runtime_error("Product not found. (Even although the search should not have been conducted. (ID = " + std::to_string(ID) + ")");
+		return bought_products[0];
+	}
+
+	void sell(int ID) {
+		Product* product = productByID(ID);
 		std::srand(static_cast<unsigned int>(std::time(nullptr)));
 		double price = product->getPrice() * static_cast<double>(std::rand()) / RAND_MAX;
 		std::cout << "You're proposed to cell the product by the price '$" << price << "'. Would you like to? (yes/no or +/-): ";

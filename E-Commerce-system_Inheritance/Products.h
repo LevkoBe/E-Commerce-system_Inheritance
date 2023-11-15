@@ -49,7 +49,7 @@ class Products : public IProducts {
 protected:
 	int startingIndex;
 	int newIndex = 0;
-	ProductType productType; // enum 
+	ProductType productType;
 	std::string productName;
 	double price;
 	int quantity;
@@ -88,7 +88,6 @@ public:
 			return new Book(getID(), productName, price, additionalAttributesDictionary["author"], std::stoi(additionalAttributesDictionary["width"]), additionalAttributesDictionary["id"]);
 			break;
 		case ClothingType:
-			// int productID, std::string& name, double price, int size, std::string color, char material
 			return new Clothing(getID(), productName, price, clothesSizeDictionary.find(additionalAttributesDictionary["size"])->second,
 				colorToHex.find(additionalAttributesDictionary["color"])->second, materialToSymbol.find(additionalAttributesDictionary["material"])->second);
 			break;

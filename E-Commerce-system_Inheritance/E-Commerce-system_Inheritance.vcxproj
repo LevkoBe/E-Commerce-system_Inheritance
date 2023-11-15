@@ -132,8 +132,10 @@
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="E-Commerce-system_Inheritance.cpp" />
     <ClCompile Include="Electronics.cpp" />
+    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Order.cpp" />
     <ClCompile Include="Product.cpp" />
+    <ClCompile Include="ProductCatalog.cpp" />
     <ClCompile Include="Products.cpp" />
     <ClCompile Include="ProductsReader.cpp" />
   </ItemGroup>
@@ -142,8 +144,10 @@
     <ClInclude Include="Clothing.h" />
     <ClInclude Include="Customer.h" />
     <ClInclude Include="Electronics.h" />
+    <ClInclude Include="Inventory.h" />
     <ClInclude Include="Order.h" />
     <ClInclude Include="Product.h" />
+    <ClInclude Include="ProductCatalog.h" />
     <ClInclude Include="Products.h" />
     <ClInclude Include="ProductsReader.h" />
     <ClInclude Include="ProductType.h" />

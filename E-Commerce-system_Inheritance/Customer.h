@@ -9,7 +9,7 @@ class Product;
 
 class Customer
 {
-	Order order;
+	Order* order = nullptr;
 	std::vector<Product*> bought_products;
 	double money;
 	std::string name;

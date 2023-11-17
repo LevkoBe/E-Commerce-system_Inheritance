@@ -135,7 +135,7 @@
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Order.cpp" />
     <ClCompile Include="Product.cpp" />
-    <ClCompile Include="ProductCatalog.cpp" />
+    <ClCompile Include="ProductsCatalog.cpp" />
     <ClCompile Include="Products.cpp" />
     <ClCompile Include="ProductsReader.cpp" />
   </ItemGroup>

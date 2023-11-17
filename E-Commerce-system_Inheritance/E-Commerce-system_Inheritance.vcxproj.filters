@@ -42,7 +42,7 @@
     <ClCompile Include="Order.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProductCatalog.cpp">
+    <ClCompile Include="ProductsCatalog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Inventory.cpp">

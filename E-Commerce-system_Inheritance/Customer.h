@@ -2,9 +2,10 @@
 #include <iostream>
 #include <vector>
 #include "Order.h"
-#include "Product.h"
 #include "Products.h"
 #include <ctime>
+
+class Product;
 
 class Customer
 {

@@ -147,7 +147,7 @@
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Order.h" />
     <ClInclude Include="Product.h" />
-    <ClInclude Include="ProductCatalog.h" />
+    <ClInclude Include="ProductsCatalog.h" />
     <ClInclude Include="Products.h" />
     <ClInclude Include="ProductsReader.h" />
     <ClInclude Include="ProductType.h" />

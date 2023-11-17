@@ -74,6 +74,10 @@ public:
 		}
 		return true;
 	}
+
+	void setPrice(double price) {
+		this->price = price;
+	}
     
 	Product* getProduct() override {
 		quantity--;
@@ -99,6 +103,20 @@ public:
 
 	void display() const {
 		std::cout << "Products: " << productName << " (" << quantity << "x)" << std::endl;
+	}
+
+	bool changeQuantity(int changer) {
+		if (quantity - changer < 0)
+		{
+			std::cout << "Sorry, you want to take away too much...";
+			return false;
+		}
+		quantity += changer;
+		return quantity > 1;
+	}
+
+	int quantityLevel() {
+		return quantity;
 	}
 
 private:

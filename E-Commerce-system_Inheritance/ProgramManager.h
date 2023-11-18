@@ -98,7 +98,16 @@ public:
 	}
 
 	void showOrder() {
-		order->allProducts();
+		if (order != nullptr)
+		{
+			order->allProducts();
+			return;
+		}
+		std::cout << "You have no orders.\n";
+	}
+
+	void showProducts() {
+		customer->products();
 	}
 
 	void finishOrder() {
@@ -113,6 +122,7 @@ public:
 		{
 			customer->buy(product);
 		}
+		order = nullptr;
 	}
 
 	void productsShipment(int productID, int amount) {

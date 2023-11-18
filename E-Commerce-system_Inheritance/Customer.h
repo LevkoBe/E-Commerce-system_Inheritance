@@ -15,6 +15,7 @@ class Customer
 	std::string name;
 public:
 	Customer(std::string name, double money) : name(name), money(money), bought_products(std::vector<Product*>()) {};
+	
 	bool products() {
 		if (bought_products.size() <= 0) {
 			return 0;

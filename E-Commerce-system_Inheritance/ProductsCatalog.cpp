@@ -2,7 +2,7 @@
 
 ProductsCatalog::ProductsCatalog() {}
 
-void ProductsCatalog::addProducts(std::vector<Products*> products) {
+void ProductsCatalog::addProducts(const std::vector<Products*>& products) {
     for (auto& prods : products) {
         addProducts(prods);
     }
@@ -38,7 +38,7 @@ void ProductsCatalog::removeProducts(Products* products) {
     std::cout << "Successfully removed from the catalog.\n";
 }
 
-std::vector<Products*> ProductsCatalog::allProducts() {
+const std::vector<Products*>& ProductsCatalog::allProducts() {
     return productsPossible;
 }
 

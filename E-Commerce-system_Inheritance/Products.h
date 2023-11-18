@@ -57,7 +57,7 @@ protected:
 
 public:
 
-	Products(std::vector<std::string> arguments, int startingIndex): startingIndex(startingIndex) { getAdditionalAttributes(arguments); }
+	Products(const std::vector<std::string>& arguments, int startingIndex): startingIndex(startingIndex) { getAdditionalAttributes(arguments); }
 
 	double getPrice() const override {
 		return price;
@@ -125,7 +125,7 @@ public:
 
 private:
 	
-	void getAdditionalAttributes(std::vector<std::string> arguments) {
+	void getAdditionalAttributes(const std::vector<std::string>& arguments) {
 		int count = arguments.size();
 
 		productType = stringToProductType(arguments[0]);

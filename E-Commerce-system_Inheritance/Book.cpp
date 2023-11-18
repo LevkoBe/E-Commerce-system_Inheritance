@@ -20,5 +20,5 @@ void Book::read() {
 }
 
 void Book::forget() {
-        bookmark = 0;
+    bookmark = 0;
 }

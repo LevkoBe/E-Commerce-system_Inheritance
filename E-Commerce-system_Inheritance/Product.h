@@ -2,10 +2,6 @@
 #include <iostream>
 
 class IProduct {
-protected:
-    int productID;
-    std::string name;
-    double price;
 public:
     virtual void display() const = 0;
     virtual double getPrice() const = 0;

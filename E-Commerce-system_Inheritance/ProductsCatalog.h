@@ -7,7 +7,7 @@ class ProductsCatalog {
 public:
     ProductsCatalog();
 
-    void addProducts(std::vector<Products*> products);
+    void addProducts(const std::vector<Products*>& products);
 
     void addProducts(Products* products);
 
@@ -15,7 +15,7 @@ public:
 
     void removeProducts(Products* products);
 
-    std::vector<Products*> allProducts();
+    const std::vector<Products*>& allProducts();
 
     void displayProducts();
 };

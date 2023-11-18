@@ -37,7 +37,7 @@ double Order::totally() {
     return totalCost;
 }
 
-std::vector<Product*> Order::buy() {
+const std::vector<Product*>& Order::buy() {
     status = Received;
     return products;
 }

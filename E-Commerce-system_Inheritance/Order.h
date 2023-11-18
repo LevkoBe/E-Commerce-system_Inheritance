@@ -32,5 +32,5 @@ public:
 
     double totally();
 
-    std::vector<Product*> buy();
+    const std::vector<Product*>& buy();
 };

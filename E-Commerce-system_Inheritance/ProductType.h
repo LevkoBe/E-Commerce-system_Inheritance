@@ -8,7 +8,7 @@ enum ProductType {
 	Unknown
 };
 
-inline ProductType stringToProductType(std::string& productTypeString) {
+inline ProductType stringToProductType(const std::string& productTypeString) {
 	static const std::map<std::string, ProductType> stringToEnum = {
 		{"Electronics", ElectronicsType},
 		{"Book", BookType},

@@ -21,7 +21,7 @@ bool ProgramManager::existsProductsByID(int productID) {
 	return false;
 }
 
-void ProgramManager::retrieveFromStorage(std::string filename) {
+void ProgramManager::retrieveFromStorage(const std::string& filename) {
 	std::vector<Products*> productss = reader.ReadFile(filename, startingIndex);
 	productsCatalog = new ProductsCatalog();
 	productsCatalog->addProducts(productss);

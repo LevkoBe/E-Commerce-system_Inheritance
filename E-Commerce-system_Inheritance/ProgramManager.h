@@ -22,7 +22,7 @@ class ProgramManager
 public:
 	ProgramManager() {};
 
-	void retrieveFromStorage(std::string filename);
+	void retrieveFromStorage(const std::string& filename);
 
 	void setCustomer(Customer* customer) { this->customer = customer; };
 

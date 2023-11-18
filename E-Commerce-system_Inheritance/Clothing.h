@@ -9,7 +9,7 @@ class Clothing final : public Product {
     char material;
     int condition = 0; // --> enum
 public:
-    Clothing(int productID, std::string& name, double price, int size, std::string color, char material) :
+    Clothing(int productID, const std::string& name, double price, int size, const std::string& color, char material) :
         Product(productID, name, price), color(color), size(size), material(material) {}
     void display() const override {
         std::cout << "Size: " << size << "; color: " << color << "; material: " << material << "; price: " << price << ".\n";

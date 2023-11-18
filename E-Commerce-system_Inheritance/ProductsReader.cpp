@@ -27,7 +27,7 @@ std::vector<Products*> ProductsReader::ReadFile(std::string filename, int starti
     return toBeReturned;
 }
 
-Products* ProductsReader::createProductsObject(std::string& line, int index) {
+Products* ProductsReader::createProductsObject(const std::string& line, int index) {
     std::istringstream iss(line);
     std::string argument;
     std::vector<std::string> arguments;

@@ -11,7 +11,7 @@ class Book final : public Product {
     int bookmark = 0;
     void generatePages();
 public:
-    Book(int productID, std::string& name, double price, std::string author, int width, std::string ID) :
+    Book(int productID, const std::string& name, double price, const std::string& author, int width, const std::string& ID) :
         Product(productID, name, price), author(author), width(width), ID(ID) {
         generatePages();
     }

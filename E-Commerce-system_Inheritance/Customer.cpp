@@ -1,6 +1,6 @@
 #include "Customer.h"
 
-Customer::Customer(std::string name, double money) : name(name), money(money), bought_products(std::vector<Product*>()) {}
+Customer::Customer(const std::string& name, double money) : name(name), money(money), bought_products(std::vector<Product*>()) {}
 
 bool Customer::products() {
     if (bought_products.size() <= 0) {

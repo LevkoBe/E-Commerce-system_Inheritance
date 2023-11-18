@@ -13,7 +13,7 @@ class Customer {
     std::string name;
 
 public:
-    Customer(std::string name, double money);
+    Customer(const std::string& name, double money);
 
     bool products();
 

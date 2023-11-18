@@ -21,5 +21,5 @@ public:
     int getId() const override {
         return productID;
     }
-    Product(int productID, std::string& name, double price) : productID(productID), name(name), price(price) {};
+    Product(int productID, const std::string& name, double price) : productID(productID), name(name), price(price) {};
 };

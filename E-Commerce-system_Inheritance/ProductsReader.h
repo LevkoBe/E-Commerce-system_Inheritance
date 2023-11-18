@@ -12,5 +12,5 @@ public:
 
     std::vector<Products*> ReadFile(std::string filename, int startingIndex);
 
-    Products* createProductsObject(std::string& line, int index);
+    Products* createProductsObject(const std::string& line, int index);
 };

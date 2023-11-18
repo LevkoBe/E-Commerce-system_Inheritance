@@ -3,9 +3,9 @@
 #include <vector>
 #include "Order.h"
 #include "Products.h"
+#include "Product.h"
 #include <ctime>
 
-class Product;
 
 class Customer
 {
@@ -40,10 +40,10 @@ public:
 		return true;
 	}
 
-	void buy(Products& products) {
-		if (products.available() && spendMoney(products.getPrice()))
+	void buy(Product* product) {
+		if (spendMoney(product->getPrice()))
 		{
-			bought_products.push_back(products.getProduct());
+			bought_products.push_back(product);
 		}
 	}
 

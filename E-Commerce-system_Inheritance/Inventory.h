@@ -17,16 +17,16 @@ public:
 	}
 	void amountDecrease(Products* products, int subtracting) {
 		products->changeQuantity(-subtracting);
-		std::vector<Products*> toRestock = needRestocking();
-		if (toRestock.empty())
-		{
-			return;
-		}
-		for (auto& product : toRestock)
-		{
-			std::cout << "Need restocking of product:\n";
-			product->display();
-		}
+		//std::vector<Products*> toRestock = needRestocking();
+		//if (toRestock.empty())
+		//{
+		//	return;
+		//}
+		//for (auto& product : toRestock)
+		//{
+		//	std::cout << "Need restocking of product:\n";
+		//	product->display();
+		//}
 	}
 
 	std::vector<Products*> needRestocking(ProductsCatalog* catalog) {

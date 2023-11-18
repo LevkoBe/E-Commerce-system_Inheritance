@@ -22,8 +22,9 @@ public:
         generatePages();
     }
     void display() const override {
-        std::cout << "Page " << bookmark << ":\n";
-        std::cout << pages[bookmark] << "\n";
+        //std::cout << "Page " << bookmark << ":\n";
+        //std::cout << pages[bookmark] << "\n";
+        std::cout << "Book by " << author << ", has " << width << " pages.\n";
     }
     int page() const { return bookmark; }
     void read() {

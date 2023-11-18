@@ -4,7 +4,6 @@
 #include "Products.h"
 #include "Product.h"
 
-class Customer;
 
 enum OrderStatus {
 	None,
@@ -17,7 +16,6 @@ enum OrderStatus {
 class Order
 {
 	int orderID;
-	Customer* customer;
 	std::vector<Product*> products;
 	double totalCost;
 	OrderStatus status;
@@ -34,24 +32,39 @@ class Order
 
 public:
 
-	Order(int orderID, Customer* customer, Product* products) : orderID(orderID), customer(customer), products(std::vector<Product*>()), status(Created) { calculateCost(); this->products.push_back(products); }
+	Order(int orderID, Product* products) : orderID(orderID), products(std::vector<Product*>()), status(Created) {
+		calculateCost(); 
+		this->products.push_back(products);
+	}
 	
-	void AddProduct(Product* product) {
-		products.push_back(product);
+	void AddProduct(Products* products) {
+		if (products->available())
+		{
+			this->products.push_back(products->getProduct());
+			return;
+		}
+		std::cout << "Product isn't available.\n";
+	}
+
+	void allProducts() {
+		for (auto& product : products)
+		{
+			product->display();
+		}
 	}
 	
 	void changeStatus(OrderStatus status) {
 		this->status = status;
 	}
+
+	double totally() {
+		calculateCost();
+		return totalCost;
+	}
 	
-	void buy() {
-		if (customer->balance() >= calculateCost())
-		{
-			status = Received;
-			customer->spendMoney(totalCost);
-			return;
-		}
-		std::cout << "Sorry, you don't have enough money. (Cost: " << totalCost << "; balance: " << customer->balance() << ")\n";
+	std::vector<Product*> buy() {
+		status = Received;
+		return products;
 	}
 };
 

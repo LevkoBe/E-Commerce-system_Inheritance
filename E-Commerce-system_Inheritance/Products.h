@@ -102,13 +102,17 @@ public:
     };
 
 	void display() const {
-		std::cout << "Products: " << productName << " (" << quantity << "x)" << std::endl;
+		std::cout << "Products: " << productName << " (" << quantity << "x)"  << " [id: " << startingIndex << "]" << std::endl;
+	}
+
+	int startIndex() {
+		return startingIndex;
 	}
 
 	bool changeQuantity(int changer) {
-		if (quantity - changer < 0)
+		if (quantity + changer < 0)
 		{
-			std::cout << "Sorry, you want to take away too much...";
+			std::cout << "Sorry, you want to take away too much...\n";
 			return false;
 		}
 		quantity += changer;

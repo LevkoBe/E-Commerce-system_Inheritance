@@ -4,6 +4,11 @@
 #include "Order.h"
 #include "Customer.h"
 #include "ProgramManager.h"
+#include "E-Commerce-system_Inheritance.h"
+
+std::vector<Customer*> customers = std::vector<Customer*>();
+std::vector<Order*> orders = std::vector<Order*>();
+ProgramManager programManager;
 
 void help() {
     std::cout << "Available commands:" << std::endl;
@@ -19,13 +24,43 @@ void help() {
     std::cout << "  - ---: Exit the program" << std::endl;
 }
 
+void ship_storage() {
+    std::string filename;
+    std::cout << "Enter storage with the products: "; // "products.txt"
+    std::cin >> filename;
+    programManager.retrieveFromStorage(filename);
+}
+
+void ship_products() {
+    int productId;
+    std::cout << "Enter product ID to ship: ";
+    std::cin >> productId;
+    int amount;
+    std::cout << "Enter amouunt of products to ship: ";
+    std::cin >> amount;
+    programManager.productsShipment(productId, amount);
+}
+
+void create_customer() {
+    std::string name;
+    std::cout << "Enter name of the customer: ";
+    std::cin >> name;
+    int money;
+    std::cout << "Enter amount of money the person has: ";
+    std::cin >> money;
+    customers.push_back(new Customer("John", 10000));
+    programManager.setCustomer(customers.back());
+}
+
+void add(){
+    int productId;
+    std::cout << "Enter product ID to buy: ";
+    std::cin >> productId;
+    programManager.addToOrder(productId);
+}
+
 
 int main() {
-    std::string filename = "products.txt";
-    std::vector<Customer*> customers = std::vector<Customer*>();
-    std::vector<Order*> orders = std::vector<Order*>();
-
-    ProgramManager programManager;
 
     while (true) {
         std::cout << "\nEnter a command ('?' for a list of commands): ";
@@ -41,21 +76,11 @@ int main() {
         }
         else if (command == "customer")
         {
-            std::string name;
-            std::cout << "Enter name of the customer: ";
-            std::cin >> name;
-            int money;
-            std::cout << "Enter amount of money the person has: ";
-            std::cin >> money;
-            customers.push_back(new Customer("John", 10000));
-            programManager.setCustomer(customers.back());
+            create_customer();
         }
         else if (command == "ship_storage")
         {
-            std::string filename;
-            std::cout << "Enter storage with the products: "; // "products.txt"
-            std::cin >> filename;
-            programManager.retrieveFromStorage(filename);
+            ship_storage();
         }
         else if (command == "inventory") {
             programManager.inventoryCheck();
@@ -64,19 +89,10 @@ int main() {
             programManager.showCatalog();
         }
         else if (command == "ship_products") {
-            int productId;
-            std::cout << "Enter product ID to ship: ";
-            std::cin >> productId;
-            int amount;
-            std::cout << "Enter amouunt of products to ship: ";
-            std::cin >> amount;
-            programManager.productsShipment(productId, amount);
+            ship_products();
         }
         else if (command == "add") {
-            int productId;
-            std::cout << "Enter product ID to buy: ";
-            std::cin >> productId;
-            programManager.addToOrder(productId);
+            add();
         }
         else if (command == "buy") {
             programManager.finishOrder();
@@ -102,3 +118,38 @@ int main() {
 
     return 0;
 }
+
+/*
+customer
+John
+10000
+ship_storage
+products.txt
+inventory
+catalog
+ship_products
+2
+15
+add
+2
+buy
+view_order
+view_products
+exit
+?
+
+*/
+
+/*
+add
+5
+add
+5
+view_order
+add
+1
+view_order
+buy
+view_products
+
+*/

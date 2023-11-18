@@ -1,61 +1,21 @@
 #pragma once
 #include "Products.h"
 
-class ProductsCatalog
-{
-	std::vector<Products*> productsPossible = std::vector<Products*>();
+class ProductsCatalog {
+    std::vector<Products*> productsPossible;
+
 public:
-	ProductsCatalog() {};
+    ProductsCatalog();
 
-	void addProducts(std::vector<Products*> products) {
-		for (auto& prods : products)
-		{
-			addProducts(prods);
-		}
-	}
+    void addProducts(std::vector<Products*> products);
 
-	void addProducts(Products* products) {
-		if (std::find(productsPossible.begin(), productsPossible.end(), products) != productsPossible.end())
-		{
-			std::cout << "Such a product already exists in the catalog.\n";
-			return;
-		}
-		productsPossible.push_back(products);
-	}
+    void addProducts(Products* products);
 
-	bool changeProducts(Products* products, double newPrice=0.0) {
-		auto it = std::find(productsPossible.begin(), productsPossible.end(), products);
-		if (it == productsPossible.end())
-		{
-			std::cout << "Such a product doesn't exists in the catalog.\n";
-			return false;
-		}
-		if (newPrice != 0.0)
-		{
-			products->setPrice(newPrice);
-		}
-		return true;
-	}
+    bool changeProducts(Products* products, double newPrice = 0.0);
 
-	void removeProducts(Products* products) {
-		if (std::find(productsPossible.begin(), productsPossible.end(), products) == productsPossible.end())
-		{
-			std::cout << "Such a product already doesn't exist in the catalog.\n";
-			return;
-		}
-		productsPossible.erase(std::remove(productsPossible.begin(), productsPossible.end(), products), productsPossible.end());
-		std::cout << "Succesfully removed from the catalog.\n";
-	}
+    void removeProducts(Products* products);
 
-	std::vector<Products*> allProducts() {
-		return productsPossible;
-	}
+    std::vector<Products*> allProducts();
 
-	void displayProducts() {
-		for (auto& products : productsPossible)
-		{
-			products->display();
-		}
-	}
+    void displayProducts();
 };
-

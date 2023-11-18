@@ -89,5 +89,8 @@
     <ClInclude Include="ProgramManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="E-Commerce-system_Inheritance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

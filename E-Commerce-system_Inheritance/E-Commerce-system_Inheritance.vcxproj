@@ -138,6 +138,7 @@
     <ClCompile Include="ProductsCatalog.cpp" />
     <ClCompile Include="Products.cpp" />
     <ClCompile Include="ProductsReader.cpp" />
+    <ClCompile Include="ProgramManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h" />
@@ -151,6 +152,7 @@
     <ClInclude Include="Products.h" />
     <ClInclude Include="ProductsReader.h" />
     <ClInclude Include="ProductType.h" />
+    <ClInclude Include="ProgramManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

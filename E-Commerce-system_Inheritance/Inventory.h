@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "Products.h"
+#include "ProductsCatalog.h"
 
 
 class Inventory
@@ -27,15 +28,25 @@ public:
 			product->display();
 		}
 	}
-	std::vector<Products*> needRestocking() {
+
+	std::vector<Products*> needRestocking(ProductsCatalog* catalog) {
 		std::vector<Products*> toRestock = std::vector<Products*>();
-		for (auto& product : productsLists)
+		for (auto& product : catalog->allProducts())
 		{
-			if (product->quantityLevel() < threshold) {
+			auto it = std::find(productsLists.begin(), productsLists.end(), product);
+			if (it == productsLists.end())
+			{
+				toRestock.push_back(product);
+			}
+			else if (product->quantityLevel() < threshold) {
 				toRestock.push_back(product);
 			}
 		}
 		return toRestock;
+	}
+
+	void initialize(ProductsCatalog* catalog) {
+		productsLists = catalog->allProducts();
 	}
 };
 

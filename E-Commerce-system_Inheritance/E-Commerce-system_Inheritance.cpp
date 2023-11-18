@@ -1,25 +1,27 @@
 
 #include <iostream>
 #include <vector>
-#include "Products.h"
-#include "ProductsReader.h"
+#include "Order.h"
 #include "Customer.h"
+#include "ProgramManager.h"
 
 
 
 int main()
 {
-    ProductsReader reader;
-    std::vector<Products*> productss = reader.ReadFile("products.txt", 0);
+    // customer / balance, products /
+    // inventory empty
+    // catalog add
+    // inventory view
+    // create an order
+    // buy products
+    // view bought products
+    "products.txt";
+    std::vector<Customer*> customers = std::vector<Customer*>();
+    std::vector<Order*> orders = std::vector<Order*>();
+    
+    customers.push_back(new Customer("John", 10000));
+    ProgramManager programManager;
+    programManager.setCustomer(customers[0]);
 
-    for (const auto& products : productss) {
-        products->display();
-        while (products->available())
-        {
-            products->getProduct()->display();
-        }
-    }
-    Customer john("John", 10000);
-    john.balance();
-    john.products();
 }

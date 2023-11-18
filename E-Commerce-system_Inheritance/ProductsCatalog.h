@@ -6,6 +6,14 @@ class ProductsCatalog
 	std::vector<Products*> productsPossible = std::vector<Products*>();
 public:
 	ProductsCatalog() {};
+
+	void addProducts(std::vector<Products*> products) {
+		for (auto& prods : products)
+		{
+			addProducts(prods);
+		}
+	}
+
 	void addProducts(Products* products) {
 		if (std::find(productsPossible.begin(), productsPossible.end(), products) != productsPossible.end())
 		{
@@ -14,6 +22,7 @@ public:
 		}
 		productsPossible.push_back(products);
 	}
+
 	bool changeProducts(Products* products, double newPrice=0.0) {
 		auto it = std::find(productsPossible.begin(), productsPossible.end(), products);
 		if (it == productsPossible.end())
@@ -27,6 +36,7 @@ public:
 		}
 		return true;
 	}
+
 	void removeProducts(Products* products) {
 		if (std::find(productsPossible.begin(), productsPossible.end(), products) == productsPossible.end())
 		{
@@ -36,7 +46,12 @@ public:
 		productsPossible.erase(std::remove(productsPossible.begin(), productsPossible.end(), products), productsPossible.end());
 		std::cout << "Succesfully removed from the catalog.\n";
 	}
-	void allProducts() {
+
+	std::vector<Products*> allProducts() {
+		return productsPossible;
+	}
+
+	void displayProducts() {
 		for (auto& products : productsPossible)
 		{
 			products->display();

@@ -47,8 +47,9 @@ public:
 		}
 	}
 
-	void balance() const {
-		std::cout << "You have $" << money << ". Enjoy it!\n";
+	double balance() const {
+		return money;
+		//std::cout << "You have $" << money << ". Enjoy it!\n";
 	}
 
 	Product* productByID(int ID) {

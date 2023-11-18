@@ -13,13 +13,10 @@ protected:
     int productID;
     std::string name;
     double price;
+
 public:
-    virtual void display() const override {};
-    double getPrice() const override {
-        return price;
-    }
-    int getId() const override {
-        return productID;
-    }
-    Product(int productID, const std::string& name, double price) : productID(productID), name(name), price(price) {};
+    Product(int productID, const std::string& name, double price);
+    virtual void display() const override;
+    double getPrice() const override;
+    int getId() const override;
 };

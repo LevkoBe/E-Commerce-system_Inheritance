@@ -37,7 +37,7 @@ Products* ProductsReader::createProductsObject(const std::string& line, int inde
         size_t start = argument.find_first_not_of(" ");
         size_t end = argument.find_last_not_of(" ");
         argument = (start != std::string::npos && end != std::string::npos) ? argument.substr(start, end - start + 1) : "";
-        arguments.push_back(move(argument));/// read more todo
+        arguments.push_back(move(argument));
     }
     return new Products(arguments, index);
 }

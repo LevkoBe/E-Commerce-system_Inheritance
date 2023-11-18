@@ -144,6 +144,7 @@
     <ClInclude Include="Book.h" />
     <ClInclude Include="Clothing.h" />
     <ClInclude Include="Customer.h" />
+    <ClInclude Include="Dictionaries.h" />
     <ClInclude Include="E-Commerce-system_Inheritance.h" />
     <ClInclude Include="Electronics.h" />
     <ClInclude Include="Inventory.h" />

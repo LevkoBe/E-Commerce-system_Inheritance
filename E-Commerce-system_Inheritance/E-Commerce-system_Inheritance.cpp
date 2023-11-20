@@ -94,6 +94,9 @@ int main() {
         else if (command == "add") {
             add();
         }
+        else if (command == "play") {
+            programManager.play();
+        }
         else if (command == "buy") {
             programManager.finishOrder();
         }

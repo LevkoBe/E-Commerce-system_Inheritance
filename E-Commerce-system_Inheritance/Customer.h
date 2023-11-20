@@ -17,6 +17,8 @@ public:
 
     bool products();
 
+    void display_products() const;
+
     void acquireMoney(int add);
 
     bool spendMoney(int spend);
@@ -28,4 +30,6 @@ public:
     Product* productByID(int ID);
 
     void sell(int ID);
+
+    std::vector<Product*> allProducts() const;
 };

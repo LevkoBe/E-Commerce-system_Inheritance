@@ -23,7 +23,10 @@ bool ProgramManager::existsProductsByID(int productID) {
 
 void ProgramManager::retrieveFromStorage(const std::string& filename) {
 	std::vector<Products*> productss = reader.ReadFile(filename, startingIndex);
-	productsCatalog = new ProductsCatalog();
+	if (productsCatalog == nullptr)
+	{
+		productsCatalog = new ProductsCatalog();
+	}
 	productsCatalog->addProducts(productss);
 	startingIndex += 1000;
 }
@@ -45,7 +48,10 @@ void ProgramManager::showOrder() {
 }
 
 void ProgramManager::showProducts() {
-	customer->products();
+	if (customer->products())
+	{
+		customer->display_products();
+	}
 }
 
 void ProgramManager::finishOrder() {
@@ -60,6 +66,7 @@ void ProgramManager::finishOrder() {
 	{
 		customer->buy(product);
 	}
+	delete order;
 	order = nullptr;
 }
 
@@ -117,5 +124,18 @@ void ProgramManager::productsShipment(int productID, int amount) {
 		inventory->amountIncrease(products, amount);
 		std::cout << "Product updated:\n";
 		products->display();
+	}
+}
+
+void ProgramManager::play() {
+	if (customer->products())
+	{
+		for (const auto product : customer->allProducts()) {
+			if (Electronics* gadget = dynamic_cast<Electronics*>(product))
+			{
+				gadget->play();
+				return;
+			}
+		}
 	}
 }

@@ -6,10 +6,13 @@ bool Customer::products() {
     if (bought_products.size() <= 0) {
         return false;
     }
+    return true;
+}
+
+void Customer::display_products() const {
     for (const auto& product : bought_products) {
         product->display();
     }
-    return true;
 }
 
 void Customer::acquireMoney(int add) {
@@ -61,4 +64,8 @@ void Customer::sell(int ID) {
         bought_products.erase(std::remove(bought_products.begin(), bought_products.end(), product), bought_products.end());
     }
     std::cout << "Looks like you're not satisfied with the price...\n";
+}
+
+std::vector<Product*> Customer::allProducts() const {
+    return bought_products;
 }

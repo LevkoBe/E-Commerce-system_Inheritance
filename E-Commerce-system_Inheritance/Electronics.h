@@ -1,11 +1,13 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include "Product.h"
 
 class Electronics final : public Product {
     std::string brand;
     std::string model;
-    int screenSize;
+    int screenSize = 0;
+    int smallSize = 20;
     int energyCapacity;
     double batteryLevel = 100.0;
 public:
@@ -13,6 +15,12 @@ public:
 
     void display() const;
 
+    void play() const;
+
     void battery();
+
+    std::vector<std::vector<char>> emptyScreen() const;
+
+    std::vector<std::vector<char>> screenWithText() const;
 };
 

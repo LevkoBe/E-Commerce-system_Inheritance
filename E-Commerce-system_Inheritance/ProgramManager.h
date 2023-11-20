@@ -39,5 +39,7 @@ public:
 	void finishOrder();
 
 	void productsShipment(int productID, int amount);
+
+	void play();
 };
 

@@ -128,7 +128,7 @@ void ProgramManager::productsShipment(int productID, int amount) {
 }
 
 void ProgramManager::play() {
-	if (customer->products())
+	if (customer && customer->products())
 	{
 		for (const auto product : customer->allProducts()) {
 			if (Electronics* gadget = dynamic_cast<Electronics*>(product))
@@ -137,5 +137,8 @@ void ProgramManager::play() {
 				return;
 			}
 		}
+		std::cout << "Sorry, you don't have an electronics.\n";
+		return;
 	}
+	std::cout << "Sorry, you don't have a customer.\n";
 }

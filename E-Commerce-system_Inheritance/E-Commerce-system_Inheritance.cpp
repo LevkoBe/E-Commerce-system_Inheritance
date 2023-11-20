@@ -18,6 +18,7 @@ void help() {
     std::cout << "  - catalog: View catalog" << std::endl;
     std::cout << "  - ship_products: Ship products to inventory" << std::endl;
     std::cout << "  - add: Add a product to the order" << std::endl;
+    std::cout << "  - play: If you have an electronics, you can play." << std::endl;
     std::cout << "  - buy: Finish and buy the order" << std::endl;
     std::cout << "  - view_order: View products in order" << std::endl;
     std::cout << "  - view_products: View bought products" << std::endl;

@@ -98,26 +98,15 @@ void Electronics::play() const {
         char userInput = _getch();
         screen[playerRow][playerCol] = ' ';
 
-        if (userInput == 77 && playerCol < width - 1) {  // Right arrow key
-            if (screen[playerRow][playerCol] == ' ') {
-                ++playerCol;
-            }
-        }
-        else if (userInput == 75 && playerCol > 0) {  // Left arrow key
-            if (screen[playerRow][playerCol] == ' ') {
-                --playerCol;
-            }
-        }
-        else if (userInput == 72 && playerRow > 0) {  // Up arrow key
-            if (screen[playerRow][playerCol] == ' ') {
-                --playerRow;
-            }
-        }
-        else if (userInput == 80 && playerRow < height - 1) {  // Down arrow key
-            if (screen[playerRow][playerCol] == ' ') {
-                ++playerRow;
-            }
-        }
+        if (userInput == 77 && playerCol < width - 1 && (screen[playerRow][playerCol + 1] == ' ' || screen[playerRow][playerCol + 1] == '*')) { playerCol++; } // >
+        else if (userInput == 75 && playerCol > 0 && screen[playerRow][playerCol - 1] == ' ') { playerCol--; } // <
+        else if (userInput == 72 && playerRow > 0 && screen[playerRow - 1][playerCol] == ' ') { playerRow--; } // ^
+        else if (userInput == 80 && playerRow < height - 1 && (screen[playerRow + 1][playerCol] == ' ' || screen[playerRow + 1][playerCol] == '*')) { playerRow++; } // ,
+
+        if (userInput == 'd' && playerCol < width - 1) { playerCol++; } // >
+        else if (userInput == 'a' && playerCol > 0) { playerCol--; } // <
+        else if (userInput == 'w' && playerRow > 0) { playerRow--; } // ^
+        else if (userInput == 's' && playerRow < height - 1) { playerRow++; } // ,
 
         screen[playerRow][playerCol] = 'X';
         system("cls");

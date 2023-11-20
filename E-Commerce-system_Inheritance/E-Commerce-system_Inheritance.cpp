@@ -157,3 +157,15 @@ buy
 view_products
 
 */
+
+/*
+add
+0
+add
+1
+view_order
+buy
+view_order
+view_products
+
+*/

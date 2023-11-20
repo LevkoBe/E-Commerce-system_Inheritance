@@ -127,7 +127,7 @@ void ProgramManager::productsShipment(int productID, int amount) {
 	}
 }
 
-void ProgramManager::play() {
+void ProgramManager::play() { // casting
 	if (customer && customer->products())
 	{
 		for (const auto product : customer->allProducts()) {
